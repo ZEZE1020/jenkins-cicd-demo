@@ -3,7 +3,7 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') // Placeholder
-    DOCKER_IMAGE = "yourdockerhubusername/jenkins-cicd-demo:${env.BUILD_NUMBER}"
+    DOCKER_IMAGE = "ogembog/jenkins-cicd-demo:${env.BUILD_NUMBER}"
   }
   stages {
     stage('Checkout') {
