@@ -20,5 +20,5 @@ func main() {
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello, NDC!")
+	fmt.Fprint(w, "Hello, NDC! Pipeline Test v2.0")
 }

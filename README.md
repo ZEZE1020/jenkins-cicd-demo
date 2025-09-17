@@ -2,14 +2,14 @@
 
 This repository demonstrates a simple Go HTTP server with a CI/CD pipeline using Jenkins and Docker.
 
-## Features
+## What's in here?
 - Go HTTP server (`main.go`) responding with "Hello, NDC!"
 - Unit tests using Go's built-in testing (`main_test.go`)
 - Dockerfile for containerization
 - Declarative Jenkinsfile for CI/CD pipeline
 
 ## Prerequisites
-- [Go](https://golang.org/) 1.21 or later
+- [Go](https://golang.org/) 1.25 (latest version)
 - [Docker](https://www.docker.com/)
 - [Jenkins](https://www.jenkins.io/) with Docker plugin
 - Docker Hub account (replace credentials in Jenkinsfile)

@@ -22,7 +22,7 @@ func TestHelloHandler(t *testing.T) {
 			status, http.StatusOK)
 	}
 
-	expected := "Hello, NDC!"
+	expected := "Hello, NDC! Pipeline Test v2.0"
 	if rr.Body.String() != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			rr.Body.String(), expected)
