@@ -1,6 +1,39 @@
 # Jenkins CI/CD Demo
 
-This repository demonstrates a simple Go HTTP server with a CI/CD pipeline using Jenkins and Docker.
+This repository demonstrates a well-structured Go HTTP server with a CI/CD pipeline using Jenkins and Docker.
+
+##  Project Structure
+
+```
+jenkins-cicd-demo/
+├── cmd/server/           # Application entry point
+│   └── main.go
+├── internal/handlers/    # HTTP handlers and business logic
+│   ├── handlers.go
+│   └── handlers_test.go
+├── deployments/         # Deployment configurations
+│   ├── docker-compose.yml
+│   ├── nginx.conf
+│   └── k8s-deployment.yml
+├── scripts/            # Deployment and utility scripts
+│   └── deploy.sh
+├── .github/           # GitHub and Copilot configurations
+├── Dockerfile         # Container definition
+├── Jenkinsfile       # CI/CD pipeline
+└── go.mod           # Go module definition
+```
+
+## ✨ Features
+
+- **Structured Go Application**: Clean separation of concerns with `cmd/` and `internal/` directories
+- **Multiple Endpoints**:
+  - `GET /` - Simple text response for compatibility
+  - `GET /api/hello` - JSON response with metadata
+  - `GET /health` - Health check endpoint
+- **Comprehensive Testing**: Unit tests for all handlers
+- **Docker Support**: Multi-stage Dockerfile with health checks
+- **Deployment Options**: Docker Compose and Kubernetes manifests
+- **CI/CD Pipeline**: Jenkins pipeline with automated deployment
 
 ## What's in here?
 - Go HTTP server (`main.go`) responding with "Hello, NDC!"

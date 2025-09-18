@@ -1,4 +1,4 @@
-// Declarative Jenkinsfile for CI/CD pipeline
+// Declarative Jenkinsfile for the CI/CD pipeline
 pipeline {
   agent any
   environment {
@@ -23,7 +23,7 @@ pipeline {
     }
     stage('Build Application') {
       steps {
-        sh 'go build -o main .'
+        sh 'go build -o main ./cmd/server'
       }
     }
     stage('Build Docker Image') {
@@ -41,7 +41,21 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        echo 'Deploy step: Replace with actual deployment logic.'
+        sh 'chmod +x scripts/deploy.sh'
+        sh './scripts/deploy.sh'
+        echo 'Application deployed successfully with Docker Compose!'
+      }
+    }
+    stage('Verification') {
+      steps {
+        echo 'Running post-deployment verification...'
+        sh 'sleep 10'  // Wait for container to start
+        sh 'curl -f http://localhost:3000/health || exit 1'
+        sh 'curl -f http://localhost:3000/dashboard || exit 1'
+        echo 'Application is healthy and responding!'
+        echo 'Dashboard: http://your-server:3000/dashboard'
+        echo 'Health Check: http://your-server:3000/health'
+        echo 'Metrics: http://your-server:3000/metrics'
       }
     }
   }
