@@ -25,3 +25,6 @@ Thumbs.db
 
 # Log files
 *.log
+
+# Presentation materials (internal use)
+presentation/
