@@ -45,7 +45,7 @@ jenkins-cicd-demo/
 - **Production-ready** container configuration
 
 ### 🚀 **CI/CD Pipeline**
-- **8-stage Jenkins pipeline** from code to deployment
+- **9-stage Jenkins pipeline** from code to deployment
 - **Automated testing** and quality gates
 - **Docker image building** and registry push
 - **Deployment automation** with health verification
@@ -135,13 +135,18 @@ This project demonstrates:
 The Jenkins pipeline executes these stages automatically:
 
 1. **Checkout** - Clone repository from GitHub
-2. **Install Dependencies** - Download Go modules  
-3. **Run Tests** - Execute unit tests (must pass to continue)
-4. **Build Application** - Compile Go binary
-5. **Build Docker Image** - Create production container
-6. **Push Docker Image** - Upload to Docker Hub registry
-7. **Deploy** - Start application with Docker Compose
-8. **Verification** - Health checks and endpoint testing
+2. **Master Agent Example (Demo Only)** - Demonstrates a stage pinned to Jenkins `master`/`built-in` agent (educational only; runs only when `RUN_MASTER_AGENT_DEMO=true`; use dedicated worker agents in production)
+3. **Install Dependencies** - Download Go modules  
+4. **Quality Checks (Parallel)** - Run **Lint** and **Test** stages in parallel
+5. **Build** - Compile Go binary and build Docker image
+6. **Scan Image (Trivy)** - Run container vulnerability scan before push
+7. **Push Image** - Upload verified Docker image to Docker Hub registry
+8. **Deploy** - Start application with Docker Compose
+9. **Verify Deployment** - Health checks and endpoint testing
+
+**Agent roles in this example:**
+- **Master/Built-in agent** - Runs only the demo stage when `RUN_MASTER_AGENT_DEMO=true`, to show how a stage can be pinned to the controller node.
+- **Worker agents** - Should run regular CI/CD workload (dependency install, lint/test, build, scan, push, deploy, and verification) in normal usage.
 
 **Total pipeline time:** ~5 minutes
 
