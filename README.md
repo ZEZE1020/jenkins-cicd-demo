@@ -144,6 +144,10 @@ The Jenkins pipeline executes these stages automatically:
 8. **Deploy** - Start application with Docker Compose
 9. **Verify Deployment** - Health checks and endpoint testing
 
+**Agent roles in this example:**
+- **Master/Built-in agent** - Runs only the demo stage when `RUN_MASTER_AGENT_DEMO=true`, to show how a stage can be pinned to the controller node.
+- **Worker agents** - Should run regular CI/CD workload (dependency install, lint/test, build, scan, push, deploy, and verification) in normal usage.
+
 **Total pipeline time:** ~5 minutes
 
 ## 📊 Monitoring & Health Checks

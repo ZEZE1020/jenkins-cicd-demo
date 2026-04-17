@@ -30,7 +30,8 @@ pipeline {
         stage('Lint') {
           steps {
             sh '''
-              gofmt -l . | tee lint-report.txt
+              gofmt -l . > lint-report.txt
+              cat lint-report.txt
               if [ -s lint-report.txt ]; then
                 echo "Lint failed: run gofmt on the files listed above."
                 exit 1
@@ -41,8 +42,12 @@ pipeline {
         stage('Test') {
           steps {
             sh '''
-              set -o pipefail
-              go test -v ./... | tee test-output.txt
+              set +e
+              go test -v ./... > test-output.txt 2>&1
+              TEST_EXIT_CODE=$?
+              set -e
+              cat test-output.txt
+              exit $TEST_EXIT_CODE
             '''
           }
         }
