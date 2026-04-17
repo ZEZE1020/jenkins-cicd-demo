@@ -136,12 +136,12 @@ The Jenkins pipeline executes these stages automatically:
 
 1. **Checkout** - Clone repository from GitHub
 2. **Install Dependencies** - Download Go modules  
-3. **Run Tests** - Execute unit tests (must pass to continue)
-4. **Build Application** - Compile Go binary
-5. **Build Docker Image** - Create production container
-6. **Push Docker Image** - Upload to Docker Hub registry
+3. **Quality Checks (Parallel)** - Run **Lint** and **Test** stages in parallel
+4. **Build** - Compile Go binary and build Docker image
+5. **Scan Image (Trivy)** - Run container vulnerability scan before push
+6. **Push Image** - Upload verified Docker image to Docker Hub registry
 7. **Deploy** - Start application with Docker Compose
-8. **Verification** - Health checks and endpoint testing
+8. **Verify Deployment** - Health checks and endpoint testing
 
 **Total pipeline time:** ~5 minutes
 
