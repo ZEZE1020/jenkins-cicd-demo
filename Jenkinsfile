@@ -10,6 +10,16 @@ pipeline {
         checkout scm
       }
     }
+    stage('Master Agent Example (Demo Only)') {
+      when {
+        expression { env.RUN_MASTER_AGENT_DEMO == 'true' }
+      }
+      agent { label 'master || built-in' }
+      steps {
+        echo 'Demo-only stage: running on Jenkins master/built-in agent. Use dedicated agents in production.'
+        sh 'echo "Agent node: $(hostname)"'
+      }
+    }
     stage('Install Dependencies') {
       steps {
         sh 'go mod download'
