@@ -13,7 +13,7 @@ jenkins-cicd-demo/
 │   └── handlers_test.go    # Comprehensive unit tests
 ├── deployments/            # Deployment configurations
 │   ├── docker-compose.yml  # Container orchestration
-│   └── k8s-deployment.yml  # Kubernetes manifests
+│   └── k8s-deployment.yml  # Kubernetes manifests (Deployment, Service, RBAC, HPA, NetworkPolicy)
 ├── scripts/               # Automation scripts
 │   └── deploy.sh          # Deployment automation
 ├── Dockerfile             # Multi-stage container build
@@ -112,6 +112,20 @@ This project demonstrates:
    cd deployments
    docker-compose up -d
    ```
+
+### Kubernetes Deployment
+
+Apply all Kubernetes resources from the bundled manifest:
+
+```bash
+kubectl apply -f deployments/k8s-deployment.yml
+```
+
+This manifest includes:
+- Deployment with resource requests/limits and liveness/readiness probes
+- ServiceAccount + RBAC (Role/RoleBinding)
+- Service and NetworkPolicy
+- HorizontalPodAutoscaler (HPA) for CPU and memory-based scaling
 
 ## 🔧 Jenkins Pipeline Setup
 
